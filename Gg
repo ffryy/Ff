@@ -1,0 +1,25 @@
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+local Window = Library:NewWindow("Sharkbite 2")
+local Section = Window:NewSection("Boat Options")
+
+Section:CreateDropdown("Select Your Free Boat", {
+    "DuckyBoatBeta", "DuckyBoat", "BlueCanopyMotorboat", "BlueWoodenMotorboat",
+    "UnicornBoat", "Jetski", "RedMarlin", "Sloop", "TugBoat",
+    "SmallDinghyMotorboat", "JetskiDonut", "Marlin", "TubeBoat",
+    "FishingBoat", "VikingShip", "SmallWoodenSailboat", "RedCanopyMotorboat",
+    "Catamaran", "CombatBoat", "TourBoat", "Duckmarine", "PartyBoat",
+    "MilitarySubmarine", "GingerbreadSteamBoat", "Sleigh2022", "Snowmobile",
+    "CruiseShip", "Wildfire", "Titanic", "StealthBoat", "UFO",
+    "PyroTank", "Athleteducky", "RGBTurretSleigh", "SeaBreacher", "Britannic",
+    "HydroTank"
+}, 1, function(selectedBoat)
+    print("Attempting to select boat:", selectedBoat)  -- Debugging line
+    local success, err = pcall(function()
+        game:GetService("ReplicatedStorage").EventsFolder.BoatSelection.UpdateHostBoat:FireServer(selectedBoat)
+    end)
+    if not success then
+        warn("Error while selecting boat:", err)  -- Debugging line
+    else
+        print("Boat selection successful!")  -- Debugging line
+    end
+end)
